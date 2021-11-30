@@ -2,7 +2,13 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["es5", "dom"],
-    "types": ["cypress", "node", "cypress-data-session", "../src/"]
+    "types": [
+      "cypress",
+      "node",
+      "cypress-data-session",
+      "@bahmutov/cy-api",
+      "../src/"
+    ]
   },
   "include": ["**/*.ts"],
   "extends": "../tsconfig.json"
