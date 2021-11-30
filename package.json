@@ -1,0 +1,39 @@
+{
+  "name": "cypress-auth",
+  "description": "Extend test package for Auth utilizing cypress-data-session",
+  "version": "1.0.0",
+  "homepage": "https://github.com/helloextend/cypress-auth#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helloextend/cypress-auth.git"
+  },
+  "license": "ISC",
+  "main": "src",
+  "types": "src",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc --skipLibCheck",
+    "release": "yarn build && yarn version && node scripts/release.js && yarn publish dist",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
+  },
+  "devDependencies": {
+    "@bahmutov/cy-api": "1.6.2",
+    "@types/faker": "^5.5.9",
+    "@types/node": "^16.11.10",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "cypress": "9.1.0",
+    "cypress-data-session": "1.13.2",
+    "eslint": "^8.3.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-no-only-tests": "^2.6.0",
+    "faker": "5.5.3",
+    "fishery": "2.1.0",
+    "prettier": "2.5.0",
+    "semantic-release": "18.0.1",
+    "typescript": "4.5.2"
+  }
+}

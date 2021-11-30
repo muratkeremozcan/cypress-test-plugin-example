@@ -1,0 +1,14 @@
+{
+  "$schema": "https://on.cypress.io/cypress.schema.json",
+  "projectId": "qeh4xn",
+  "API_MESSAGES": false,
+  "defaultCommandTimeout": 10000,
+  "retries": {
+    "runMode": 2,
+    "openMode": 0
+  },
+  "baseUrl": "https://api-dev.helloextend.com",
+  "env": {
+    "ENVIRONMENT": "dev"
+  }
+}
