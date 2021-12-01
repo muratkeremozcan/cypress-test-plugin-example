@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "types": ["@bahmutov/cy-api", "./"]
+  },
+  "include": ["**/*.ts"],
+  "extends": "../tsconfig.json"
+}

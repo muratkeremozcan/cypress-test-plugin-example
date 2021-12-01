@@ -1,11 +1,14 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
 const fs = require('fs-extra')
 const path = require('path')
 const packageJson = require('../package.json')
 
 const newPackage = {
-  ...packageJson,
-  main: './support.js',
-  typings: './index.d.ts'
+  ...packageJson
+  // we can `just set these both to src in the main package.json
+  // main: './index.js',
+  // typings: './index.d.ts'
 }
 
 fs.outputFileSync(

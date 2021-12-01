@@ -1,6 +1,6 @@
 {
   "$schema": "https://on.cypress.io/cypress.schema.json",
-  "projectId": "qeh4xn",
+  "projectId": "krxg6g",
   "API_MESSAGES": false,
   "defaultCommandTimeout": 10000,
   "retries": {

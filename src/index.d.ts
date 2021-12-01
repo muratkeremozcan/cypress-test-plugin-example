@@ -25,7 +25,7 @@ declare global {
       /** creates a user and yields the response body */
       createUser(
         token: string,
-        partialUser?: DeepPartial<User> | undefined,
+        partialUser: DeepPartial<User> | undefined,
         version?: APIVersion
       ): Cypress.Chainable<any>
 
@@ -68,7 +68,7 @@ declare global {
        * */
       maybeGetTokenAndUser(
         sessionName: string,
-        partialUser?: DeepPartial<User> | undefined
+        partialUser: DeepPartial<User> | undefined
       ): Cypress.Chainable<any>
     }
   }
