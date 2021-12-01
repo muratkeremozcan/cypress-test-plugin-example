@@ -1,11 +1,11 @@
 {
   "name": "cypress-auth",
   "description": "Extend test package for Auth utilizing cypress-data-session",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "homepage": "https://github.com/helloextend/cypress-auth#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/helloextend/cypress-auth.git"
+    "url": "https://github.com/helloextend/cypress-auth.git"
   },
   "license": "ISC",
   "main": "src",
@@ -19,7 +19,8 @@
     "lint": "eslint --ext=.js,.ts,.tsx",
     "release": "yarn build && yarn version && node scripts/release.js && yarn publish dist",
     "cy:open": "cypress open",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "semantic-release": "semantic-release"
   },
   "devDependencies": {
     "@bahmutov/cy-api": "1.6.2",
@@ -35,7 +36,11 @@
     "faker": "5.5.3",
     "fishery": "2.1.0",
     "prettier": "2.5.0",
-    "semantic-release": "18.0.1",
+    "semantic-release": "^18.0.1",
+    "semantic-release-cli": "^5.4.4",
     "typescript": "4.5.2"
+  },
+  "publishConfig": {
+    "access": "restricted"
   }
 }
