@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "build": "tsc --skipLibCheck",
+    "lint": "eslint --ext=.js,.ts,.tsx",
     "release": "yarn build && yarn version && node scripts/release.js && yarn publish dist",
     "cy:open": "cypress open",
     "cy:run": "cypress run"
