@@ -1,5 +1,5 @@
 import { Factory } from 'fishery'
-import * as faker from 'faker'
+import { datatype, internet } from 'faker'
 import { APIVersion } from '../api-version'
 import type { User } from '../interfaces/user'
 
@@ -10,8 +10,8 @@ export class UserFactory extends Factory<User> {
   constructor(accessToken: string, version: APIVersion = APIVersion.latest) {
     super(({ params }) => {
       const user = {
-        email: `qa+${faker.datatype.uuid()}@extend.com`,
-        password: faker.internet.password(8, false, undefined, '#1'),
+        email: `qa+${datatype.uuid()}@extend.com`,
+        password: internet.password(8, false, undefined, '#1'),
         firstName: 'QA',
         lastName: 'Test User',
         role: 'user'

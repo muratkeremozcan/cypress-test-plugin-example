@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { DeepPartial } from 'fishery'
-import { APIVersion } from './api-version'
-import { User } from './interfaces/user'
+import type { APIVersion } from './api-version'
+import type { User } from './interfaces/user'
 
 export {}
 

@@ -1,7 +1,7 @@
 {
-  "name": "cypress-auth",
+  "name": "@extend/cypress-auth",
   "description": "Extend test package for Auth utilizing cypress-data-session",
-  "version": "0.0.0-development",
+  "version": "1.0.2",
   "homepage": "https://github.com/helloextend/cypress-auth#readme",
   "repository": {
     "type": "git",
@@ -11,7 +11,8 @@
   "main": "src",
   "types": "src",
   "files": [
-    "src"
+    "**/*.js",
+    "index.d.ts"
   ],
   "scripts": {
     "typecheck": "tsc --skipLibCheck --noEmit",
@@ -19,28 +20,25 @@
     "lint": "eslint --ext=.js,.ts,.tsx",
     "release": "yarn build && yarn version && node scripts/release.js && yarn publish dist",
     "cy:open": "cypress open",
-    "cy:run": "cypress run",
-    "semantic-release": "semantic-release"
+    "cy:run": "cypress run"
+  },
+  "dependencies": {
+    "@bahmutov/cy-api": "1.6.2",
+    "cypress": "9.1.0",
+    "cypress-data-session": "1.13.3",
+    "faker": "5.5.3",
+    "fishery": "2.1.0"
   },
   "devDependencies": {
-    "@bahmutov/cy-api": "1.6.2",
-    "@types/faker": "^5.5.9",
-    "@types/node": "^16.11.10",
-    "@typescript-eslint/eslint-plugin": "^5.5.0",
-    "@typescript-eslint/parser": "^5.5.0",
-    "cypress": "9.1.0",
-    "cypress-data-session": "1.13.2",
-    "eslint": "^8.3.0",
-    "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-no-only-tests": "^2.6.0",
-    "faker": "5.5.3",
-    "fishery": "2.1.0",
+    "@types/faker": "5.5.9",
+    "@types/node": "16.11.11",
+    "@typescript-eslint/eslint-plugin": "5.5.0",
+    "@typescript-eslint/parser": "5.5.0",
+    "dependency-version-badge": "^1.11.0",
+    "eslint": "8.3.0",
+    "eslint-plugin-cypress": "2.12.1",
+    "eslint-plugin-no-only-tests": "2.6.0",
     "prettier": "2.5.0",
-    "semantic-release": "^18.0.1",
-    "semantic-release-cli": "^5.4.4",
     "typescript": "4.5.2"
-  },
-  "publishConfig": {
-    "access": "restricted"
   }
 }
