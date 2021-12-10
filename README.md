@@ -1,6 +1,8 @@
 # Cypress Test Plugin Example
 
-![cypress-data-session version](https://img.shields.io/badge/cypress--data--session-1.13.3-brightgreen) ![@bahmutov/cy-api version](https://img.shields.io/badge/@bahmutov/cy--api-1.6.2-brightgreen) ![cypress version](https://img.shields.io/badge/cypress-9.1.0-brightgreen) [![renovate-app badge][renovate-badge]][renovate-app]
+![cypress-data-session version](https://img.shields.io/badge/cypress--data--session-1.13.3-brightgreen)![@bahmutov/cy-api version](https://img.shields.io/badge/@bahmutov/cy--api-1.6.2-brightgreen) ![cypress version](https://img.shields.io/badge/cypress-9.1.0-brightgreen) [![renovate-app badge][renovate-badge]][renovate-app]
+
+How to create an internal test package for your team, in TS, implement custom commands, and use other Cypress plugins.
 
 ## Create & configure the repo
 
@@ -30,11 +32,11 @@ git branch -m master main
 git push -u origin main
 ```
 
-Install & open Cypress, implement the commands, tests,` cypress.json`,` cypress.env.json`, `plugins/index.js` like usual. Start with the [default typescript settings](https://docs.cypress.io/guides/tooling/typescript-support#Configure-tsconfig-json). Add secrets to github if using `cypress.env.json`. 
+Install & open Cypress, implement the commands, tests,` cypress.json`,` cypress.env.json`, `plugins/index.js` like usual. Start with the [default typescript settings](https://docs.cypress.io/guides/tooling/typescript-support#Configure-tsconfig-json). Add secrets to github if using `cypress.env.json`.
 
 ## Setup badges
 
-### Renovate badges: 
+### Renovate badges:
 
 Add anywhere on your readme (bottom).
 
@@ -44,11 +46,13 @@ Add anywhere on your readme (bottom).
 ```
 
 #### Badges for your package.json dependencies
+
 > `npx -p` just installs it on the fly\_
 
 `npx -p dependency-version-badge update-badge <name-of-package> <other-package>`
 
 ### Badge for the repo itself
+
 You can use Github to create a badge: Actions > Workflows > upper right ... > Create Status badge. This will make a badge out of the status of a yml file
 [![cypress-store](url-to-worfklow-yml-file/badge.svg?branch=main&event=push)](url-to-worfklow-yml-file)
 
