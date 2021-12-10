@@ -19,6 +19,10 @@ declare global {
         extendPassword: string
       ): Cypress.Chainable<any>
 
+      /** sends a POST to auth/login endpoint and yields the response
+       * allowedToFail */
+      getTokenResponse(email: string, password: string): Cypress.Chainable<any>
+
       /** takes in accessToken, pings /me and yields user with accessToken */
       me(accessToken: string, version?: APIVersion): Cypress.Chainable<any>
 
@@ -29,20 +33,7 @@ declare global {
         version?: APIVersion
       ): Cypress.Chainable<any>
 
-      /** Gets the user by Id from /auth/users/${userId}. The user may or may not exist, it does not fail on not found
-       * ```
-       * cy.getUser(id).its('body').its('email').should('eq', 'murat@extend.com')
-       * ```
-       */
-      getUser(token: string, userId: string)
-
-      /** Removes the user given an accessToken and userId. sends a DELETE to auth/users/${userId}
-       * ```
-       * cy.deleteUser(accessToken, userId)
-       * cy.getUser(userId).its('status').should('eq', 404)
-       * ```
-       */
-      deleteUser(accessToken: string, userId: string)
+      createUserWithToken()
 
       /// cypress-data-session utilities ///
 
