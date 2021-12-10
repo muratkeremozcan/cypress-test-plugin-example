@@ -1,4 +1,4 @@
-name: test-package-consumer
+name: cypress-test-plugin-example
 on:
   push:
   workflow_dispatch:
@@ -15,7 +15,7 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v2
 
-      - name: Run test package consumer tests 🧪
+      - name: Run tests 🧪
         uses: cypress-io/github-action@v2.11.7
         with:
           browser: chrome

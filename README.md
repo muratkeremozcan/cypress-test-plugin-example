@@ -53,8 +53,10 @@ Add anywhere on your readme (bottom).
 
 ### Badge for the repo itself
 
-You can use Github to create a badge: Actions > Workflows > upper right ... > Create Status badge. This will make a badge out of the status of a yml file
-[![cypress-store](url-to-worfklow-yml-file/badge.svg?branch=main&event=push)](url-to-worfklow-yml-file)
+You can use Github to create a badge: Actions > Workflows > click on a workflow > upper right ... > Create Status badge. This will make a badge out of the status of a yml file
+[![repo-name](url-to-worfklow-yml-file/badge.svg?branch=main&event=push)](url-to-worfklow-yml-file)
+
+[![test-package-consumer](https://github.com/muratkeremozcan/cypress-test-plugin-example/actions/workflows/test-package-consumer.yml/badge.svg)](https://github.com/muratkeremozcan/cypress-test-plugin-example/actions/workflows/test-package-consumer.yml)
 
 badge for cypress dashboard (only works with public dashboards)
 [![any-name-usually-your-package-dashboard](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/<your-project-id>/main&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/<your-project-id>/runs)
