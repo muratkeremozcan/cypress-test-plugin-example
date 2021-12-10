@@ -1,13 +1,8 @@
 {
-  "name": "@extend/cypress-auth",
-  "description": "Extend test package for Auth utilizing cypress-data-session",
-  "version": "1.0.2",
-  "homepage": "https://github.com/helloextend/cypress-auth#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/helloextend/cypress-auth.git"
-  },
-  "license": "ISC",
+  "name": "cypress-test-plugin-example",
+  "description": "cypress plugin utilizing other plugins",
+  "version": "1.0.0",
+  "license": "NOLICENSE",
   "main": "src",
   "types": "src",
   "files": [
