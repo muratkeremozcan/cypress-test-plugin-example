@@ -71,13 +71,23 @@ You can use Github to create a badge: Actions > Workflows > click on a workflow 
 
 ## Command Resource Refactoring
 
-If all is working well at this point, Cypress commands have been implemented, you have specs, the repo is setup to your liking, badges are good, push the changes up then proceed. 
+If all is working well at this point, Cypress commands have been implemented, you have specs, the repo is setup to your liking, badges are good, push the changes up then proceed.
 
 At the repo root, create a `src` folder. Move `cypress/support/` folder contents to it. Also move the type definitions at `cypress/index.d.ts` to the root of the src folder.
 
-### Typescript settings
+#### cypress/support/index.js
 
-#### `./src/tsconfig.json`
+Create this file with a one-liner import. This will import the top level package folder. We previously set `package.json` "main"`to`"src"` for this reason.
+
+```typescript
+import '../..'
+```
+
+Run the spec files, all should be working the same way
+
+## Typescript settings
+
+### `./src/tsconfig.json`
 
 Create a `src/tsconfig.json`.
 Include all the plugins types you are using in the command files, and include the folder itself with "./"
@@ -92,11 +102,11 @@ Include all the plugins types you are using in the command files, and include th
 }
 ```
 
+### ./src/index.ts
 
-#### ./src/index.ts
 Rename the `index.js` file to `index.ts`. Import all the plugins here.
 
-Convert all the Cypress commands to functions, export the ones that will be used as commands. 
+Convert all the Cypress commands to functions, export the ones that will be used as commands.
 
 Import them at `index.ts` , and wrap them in Cypress commands.
 
@@ -115,7 +125,7 @@ Cypress.Commands.add('createUser', createUser)
 Cypress.Commands.add('maybeGetToken', maybeGetToken)
 ```
 
-#### ./cypress/tsconfig.json
+### ./cypress/tsconfig.json
 
 The spec files will use Cypress types, and the types from the `./src`. We might also need additional types for independent usage of the plugins in the specs, for example `cypress-data-session` is used to clear the data session in the specs so we need the types here.
 
@@ -129,9 +139,9 @@ The spec files will use Cypress types, and the types from the `./src`. We might 
 }
 ```
 
-#### ./tsconfig.json
+### ./tsconfig.json
 
-Update `tsconfig.json` at the project root to include the types from `./src` . 
+Update `tsconfig.json` at the project root to include the types from `./src` .
 
 In order to run typecheck, you may need to have a subset of the types at the root tsconfig.json. Copy the types from one of the other 2 jsons and follow a process of elimination.
 
@@ -145,43 +155,118 @@ In order to run typecheck, you may need to have a subset of the types at the roo
 ]
 ```
 
-### Continue with the command resource refactor
+## Release
 
-#### cypress/support/index.js
-Create this file with a one-liner import. This will import the top level package folder. We previously set `package.json`  "main"` to `"src"` for this reason.
+### Build the app (dist folder)
 
-```typescript
-import '../..'
+We need to complie the TS into JS.
+
+```bash
+tsc --skipLibCheck
 ```
 
-Run the spec files, all should be working the same way
+### Update the package version at `./package.json`
 
+```bash
+yarn version
+```
 
+### Create a `./package.json` copy in dist folder, also copy the types and dependency types to the dist folder
 
----
+For this we will write a script at `./scripts/release.js`
 
-install the plugin at another repo
+```js
+const fs = require('fs-extra')
+const path = require('path')
+const packageJson = require('../package.json')
 
-yarn add -D <plugin-name>
-or
-npm i -D <plugin-name>
-
-setup the types at cypress/tsconfig.json
-
-{
-"compilerOptions": {
-"types": ["cypress", "<plugin-name>"],
-"target": "esnext",
-"lib": ["esnext", "dom"],
-"allowJs": true,
-"resolveJsonModule": true
-},
-"include": ["**/*.ts"]
+const newPackage = {
+  ...packageJson
 }
 
-import the package at cypress/support/index.js  
-import '<package-name>'
+// whether dist/package.json exists or not, get it created and synced with root package.json
+fs.outputFileSync(
+  path.resolve(__dirname, '..', 'dist', 'package.json'),
+  JSON.stringify(newPackage, null, 2)
+)
 
+// copy the types and dependency types
+fs.copy(
+  path.resolve(__dirname, '..', 'src', 'index.d.ts'),
+  path.resolve(__dirname, '..', 'dist', 'index.d.ts')
+)
+
+// if your types need additional files, copy them too
+fs.copy(
+  path.resolve(__dirname, '..', 'src', 'api-version.ts'),
+  path.resolve(__dirname, '..', 'dist', 'api-version.ts')
+)
+```
+
+### Publish
+
+Publish step is different per environment, because of internal registry needs.
+
+Internally we use AWS CodeArtifact, and all it takes to release is `yarn publish dist`. For publishing to npm, take a look at [Gleb's instructions](https://glebbahmutov.com/blog/publishing-cypress-command/).
+
+### Create a `./package.json` script out of these commands
+
+```json
+"build": "tsc --skipLibCheck",
+"release": "yarn build && yarn version && node scripts/release.js && yarn publish dist"
+```
+
+### Run the script
+
+```bash
+# builds the app (dist folder)
+# updates package version in the root package.json
+# creates a package.json copy at dist folder
+# copies the types and dependency types to the dist folder
+# publishes to AWS CodeArtifact
+yarn release
+```
+
+> This plugin has not been released anywhere at the time of writing. The first person who releases to a registry gets to do it there for the first time!
+
+## Install the plugin at another repo
+
+```bash
+yarn add -D cypress-test-plugin-example
+# or
+npm i -D cypress-test-plugin-example
+```
+
+Setup the types at `cypress/tsconfig.json` :
+
+```json
+{
+  "compilerOptions": {
+    "types": ["cypress", "cypress-test-plugin-example"],
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
+    "allowJs": true,
+    "resolveJsonModule": true
+  },
+  "include": ["**/*.ts"]
+}
+```
+
+Import the package at `cypress/support/index.js` :
+
+```typescript
+import cypress-test-plugin-example
+```
+
+Try out the commands! You can copy the specs from this repo's only spec and see how they work. The commands you have implemented in your plugin should work just the same way.
+
+### References
+
+https://glebbahmutov.com/blog/publishing-cypress-command/ - Gleb Bahmutov
+
+[https://github.com/bahmutov/cypress-get-by-label JS](https://glebbahmutov.com/blog/publishing-cypress-command/) JS - Gleb Bahmutov
+
+https://github.com/dmtrKovalenko/cypress-real-events TS - Dmitry Kovalenko
 
 
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
