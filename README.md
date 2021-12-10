@@ -1,46 +1,54 @@
 # Cypress Test Plugin Example
 
-[![renovate-app badge][renovate-badge]][renovate-app] ![cypress version](https://img.shields.io/badge/cypress-9.1.0-brightgreen)
+![cypress-data-session version](https://img.shields.io/badge/cypress--data--session-1.13.3-brightgreen) ![@bahmutov/cy-api version](https://img.shields.io/badge/@bahmutov/cy--api-1.6.2-brightgreen) ![cypress version](https://img.shields.io/badge/cypress-9.1.0-brightgreen) [![renovate-app badge][renovate-badge]][renovate-app]
 
-[renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
-[renovate-app]: https://renovateapp.com/
+## Create & configure the repo
 
-create & configure the repo
-npm init -y
+> You can replicate most of these settings from this repo.
 
-"main": "src",  
-"types": "src",  
+`npm init -y`
+
+Set these `package.json` properties:
+
+```json
+...
+"main": "src",
+"types": "src",
 "files": [ "**/*.js", "index.d.ts" ],
+...
+```
 
-add scripts, dependencies, devDependencies
+Add scripts, dependencies, devDependencies.
 
-eslintrc.js, .nvmrc, prettier, husky, .vscode/settings.json, renovate.json
+Setup generic repo helpers: eslintrc.js, .nvmrc, prettier, husky, .vscode/settings.json, renovate.json.
 
-rename master
-(reference https://www.git-tower.com/learn/git/faq/git-rename-master-to-main)
+[Rename master to main](https://www.git-tower.com/learn/git/faq/git-rename-master-to-main):
+
+```bash
 git branch -m master main
-at github/.../settings/branches, switch default branch to main
+# at github/.../settings/branches, switch default branch to main
 git push -u origin main
+```
 
-configure Cypress and create tests
-start a new branch,
-use default typescript settings https://docs.cypress.io/guides/tooling/typescript-support#Configure-tsconfig-json
-open cypress, implement the commands, tests, cypress.json, cypress.env.json, plugins/index.js like usual. Add secrets to github if using cypress.env.json
+Install & open Cypress, implement the commands, tests,` cypress.json`,` cypress.env.json`, `plugins/index.js` like usual. Start with the [default typescript settings](https://docs.cypress.io/guides/tooling/typescript-support#Configure-tsconfig-json). Add secrets to github if using `cypress.env.json`. 
 
-setup badges
-renovate
-Add anywhere on your readme (bottom)
+## Setup badges
+
+### Renovate badges: 
+
+Add anywhere on your readme (bottom).
+
+```markdown
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
 [renovate-app]: https://renovateapp.com/
-Add to the top
-[![any badge name] followed by the above links
-[![renovate-app badge][renovate-badge]][renovate-app]
+```
 
-badges for your package.json dependencies
-for the badges for dependencies / devDependencies (npx -p just installs it on the fly\_
-npx -p dependency-version-badge update-badge <name-of-package> <other-package>
+#### Badges for your package.json dependencies
+> `npx -p` just installs it on the fly\_
 
-badge for the repo itself
+`npx -p dependency-version-badge update-badge <name-of-package> <other-package>`
+
+### Badge for the repo itself
 You can use Github to create a badge: Actions > Workflows > upper right ... > Create Status badge. This will make a badge out of the status of a yml file
 [![cypress-store](url-to-worfklow-yml-file/badge.svg?branch=main&event=push)](url-to-worfklow-yml-file)
 
@@ -99,3 +107,6 @@ setup the types at cypress/tsconfig.json
 
 import the package at cypress/support/index.js  
 import '<package-name>'
+
+[renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
+[renovate-app]: https://renovateapp.com/
