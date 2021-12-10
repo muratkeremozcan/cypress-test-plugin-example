@@ -1,0 +1,21 @@
+name: test-package-consumer
+on:
+  push:
+  workflow_dispatch:
+
+# if this branch is pushed back to back, cancel the older branch's workflow
+concurrency:
+  group: ${{ github.ref }} && ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      - name: Run test package consumer tests 🧪
+        uses: cypress-io/github-action@v2.11.7
+        with:
+          browser: chrome

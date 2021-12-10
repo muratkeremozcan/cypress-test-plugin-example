@@ -1,0 +1,12 @@
+[
+  {
+    "role": "admin",
+    "email": "auth-admin@gmail.com",
+    "id": 1
+  },
+  {
+    "role": "user",
+    "email": "anotherUser@gmail.com",
+    "id": 2
+  }
+]
