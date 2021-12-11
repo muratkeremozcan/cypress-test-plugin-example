@@ -1,5 +1,7 @@
 # Cypress Test Plugin Example
 
+See the blog post [How to create internal test plugins for your team in TS, implement custom commands, and use other Cypress plugins in them]https://dev.to/muratkeremozcan/how-to-create-an-internal-test-plugins-for-your-team-in-ts-implement-custom-commands-and-use-other-cypress-plugins-in-them-5lp
+
 [![cypress-test-plugin-example](https://github.com/muratkeremozcan/cypress-test-plugin-example/actions/workflows/cypress-test-plugin-example.yml/badge.svg?branch=main&event=push)](https://github.com/muratkeremozcan/cypress-test-plugin-example/actions/workflows/cypress-test-plugin-example.yml)![cypress-data-session version](https://img.shields.io/badge/cypress--data--session-1.13.3-brightgreen)![@bahmutov/cy-api version](https://img.shields.io/badge/@bahmutov/cy--api-1.6.2-brightgreen) ![cypress version](https://img.shields.io/badge/cypress-9.1.0-brightgreen) [![renovate-app badge][renovate-badge]][renovate-app]
 
 How to create an internal test package for your team, in TS, implement custom commands, and use other Cypress plugins.
